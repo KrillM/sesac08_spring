@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+    <title>Title</title>
+</head>
+<body>
+    <h1>이것은 게시판</h1>
+    <input type="text" name="search" /><button>검색</button>
+    <form method="post" action="/writing">
+        <input type="text" placeholder="제목" name="title">
+        <input type="text" placeholder="내용" name="content">
+        <input type="text" placeholder="작성자" name="writer">
+        <button type="submit">입력</button>
+    </form>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>작성일</th>
+                <th>수정</th>
+                <th>삭제</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="content : ${contents}">
+                <td th:text="${content.id}">1</td>
+                <td th:text="${content.title}">제목</td>
+                <td th:text="${content.writer}">작성자</td>
+                <td th:text="${content.registered}">작성일</td>
+                <td><a th:href="'/update/' + ${content.id}">수정</a></td>
+                <td><a th:href="'/delete/' + ${content.id}">삭제</a></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
