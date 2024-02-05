@@ -14,6 +14,6 @@ public interface ContentMapper {
     @Insert("insert into content(title, content, writer) values (#{title}, #{content}, #{writer})")
     void createContent(String title, String content, String writer);
 
-    @Delete("delete from content where id={#id}")
+    @Delete("delete from content where id = #{id}")
     void deleteContent(int id);
 }

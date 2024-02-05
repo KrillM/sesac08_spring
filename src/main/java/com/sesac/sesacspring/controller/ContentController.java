@@ -28,10 +28,10 @@ public class ContentController {
         return "redirect:/write";
     }
 
-    @GetMapping("/delete/{id}")
-    @ResponseBody
-    public void deleteContent(@RequestParam int id){
+    @PostMapping("/delete/{id}")
+    public String deleteContent(@PathVariable("id") int id){
         contentService.deleteContent(id);
+        return "redirect:/write";
     }
 
 }

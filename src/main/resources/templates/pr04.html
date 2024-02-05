@@ -20,6 +20,7 @@
                 <th>번호</th>
                 <th>제목</th>
                 <th>작성자</th>
+                <th>내용</th>
                 <th>작성일</th>
                 <th>수정</th>
                 <th>삭제</th>
@@ -30,11 +31,28 @@
                 <td th:text="${content.id}">1</td>
                 <td th:text="${content.title}">제목</td>
                 <td th:text="${content.writer}">작성자</td>
+                <td th:text="${content.content}">내용</td>
                 <td th:text="${content.registered}">작성일</td>
                 <td><a th:href="'/update/' + ${content.id}">수정</a></td>
-                <td><a th:href="'/delete/' + ${content.id}">삭제</a></td>
+                <td>
+                    <button th:attr="onclick='deleteContent(' + ${content.id} + ')'">삭제</button>
+                </td>
             </tr>
         </tbody>
     </table>
+    <script th:inline="javascript">
+        function deleteContent(id) {
+            fetch(`/delete/`+ id, { method: 'POST' })
+                .then(response => {
+                    if(response.ok) {
+                        window.location.href = '/write';
+                    }
+                    else {
+                        alert("삭제할 수 없습니다.");
+                    }
+                }
+            );
+        }
+    </script>
 </body>
 </html>
