@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>이것은 게시판</h1>
-    <input type="text" name="search" /><button>검색</button>
+    <input type="text" id="search" name="search" /><button onclick="searchContent()">검색</button>
     <form method="post" action="/writing">
         <input type="text" placeholder="제목" name="title">
         <input type="text" placeholder="내용" name="content">
@@ -34,7 +34,7 @@
                 <td th:text="${content.writer}">작성자</td>
                 <td th:text="${content.registered}">작성일</td>
                 <td>
-                    <button th:attr="onclick='updateContent(' + ${content.id} + ')'">수정</button>
+                    <button th:attr="onclick='updateContentView(' + ${content.id} + ')'">수정</button>
                 </td>
                 <td>
                     <button th:attr="onclick='deleteContent(' + ${content.id} + ')'">삭제</button>
@@ -43,7 +43,21 @@
         </tbody>
     </table>
     <script th:inline="javascript">
-        function updateContent(id){
+        function searchContent() {
+            var keyword = document.getElementById('search').value;
+            var contents = /*[[${contents}]]*/; // 서버에서 받아온 게시글들
+            var count = 0;
+
+            contents.forEach(content => {
+                if (content.title.includes(keyword) || content.content.includes(keyword) || content.writer.includes(keyword)) {
+                    count++;
+                }
+            });
+
+            alert("일치하는 검색어는 " + count + "개입니다.");
+        }
+
+        function updateContentView(id){
             var row = document.getElementById('row' + id);
             var cells = row.getElementsByTagName('td');
 
@@ -57,13 +71,13 @@
             }
 
             var updateBtn = document.createElement('button');
-            updateBtn.setAttribute('onclick', 'updateContentProcess(' + id + ')');
+            updateBtn.setAttribute('onclick', 'updateContent(' + id + ')');
             updateBtn.innerText = '수정';
             cells[5].innerText = '';
             cells[5].appendChild(updateBtn);
         }
 
-        function updateContentProcess(id){
+        function updateContent(id){
             var row = document.getElementById('row' + id);
             var cells = row.getElementsByTagName('td');
 
