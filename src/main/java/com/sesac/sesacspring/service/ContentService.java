@@ -35,6 +35,10 @@ public class ContentService {
         contentMapper.createContent(title, content, writer);
     }
 
+    public void updateContent(int id, String title, String content, String writer) {
+        contentMapper.updateContent(id, title, content, writer);
+    }
+
     public void deleteContent(int id) {
         contentMapper.deleteContent(id);
     }

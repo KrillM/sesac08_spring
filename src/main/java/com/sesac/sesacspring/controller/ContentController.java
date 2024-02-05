@@ -28,6 +28,12 @@ public class ContentController {
         return "redirect:/write";
     }
 
+    @PostMapping("/update/{id}")
+    public String updateContent(@PathVariable("id") int id, @RequestBody ContentDto contentDto){
+        contentService.updateContent(id, contentDto.getTitle(), contentDto.getContent(), contentDto.getWriter());
+        return "redirect:/write";
+    }
+
     @PostMapping("/delete/{id}")
     public String deleteContent(@PathVariable("id") int id){
         contentService.deleteContent(id);

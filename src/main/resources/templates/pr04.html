@@ -19,21 +19,23 @@
             <tr>
                 <th>번호</th>
                 <th>제목</th>
-                <th>작성자</th>
                 <th>내용</th>
+                <th>작성자</th>
                 <th>작성일</th>
                 <th>수정</th>
                 <th>삭제</th>
             </tr>
         </thead>
         <tbody>
-            <tr th:each="content : ${contents}">
+            <tr th:each="content : ${contents}" th:id="'row' + ${content.id}">
                 <td th:text="${content.id}">1</td>
                 <td th:text="${content.title}">제목</td>
-                <td th:text="${content.writer}">작성자</td>
                 <td th:text="${content.content}">내용</td>
+                <td th:text="${content.writer}">작성자</td>
                 <td th:text="${content.registered}">작성일</td>
-                <td><a th:href="'/update/' + ${content.id}">수정</a></td>
+                <td>
+                    <button th:attr="onclick='updateContent(' + ${content.id} + ')'">수정</button>
+                </td>
                 <td>
                     <button th:attr="onclick='deleteContent(' + ${content.id} + ')'">삭제</button>
                 </td>
@@ -41,6 +43,54 @@
         </tbody>
     </table>
     <script th:inline="javascript">
+        function updateContent(id){
+            var row = document.getElementById('row' + id);
+            var cells = row.getElementsByTagName('td');
+
+            for (var i = 0; i < 3; i++) {
+                var input = document.createElement('input');
+                input.type = 'text';
+                input.name = i === 0 ? 'title' : i === 1 ? 'writer' : 'content';
+                input.value = cells[i+1].innerText;
+                cells[i+1].innerText = '';
+                cells[i+1].appendChild(input);
+            }
+
+            var updateBtn = document.createElement('button');
+            updateBtn.setAttribute('onclick', 'updateContentProcess(' + id + ')');
+            updateBtn.innerText = '수정';
+            cells[5].innerText = '';
+            cells[5].appendChild(updateBtn);
+        }
+
+        function updateContentProcess(id){
+            var row = document.getElementById('row' + id);
+            var cells = row.getElementsByTagName('td');
+
+            var title = cells[1].children[0].value;
+            var content = cells[2].children[0].value;
+            var writer = cells[3].children[0].value;
+
+            var data = {title: title, content: content, writer: writer};
+
+            fetch(`/update/`+ id, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    if(response.ok) {
+                        window.location.href = '/write';
+                    }
+                    else {
+                        alert("수정할 수 없습니다.");
+                    }
+                }
+            );
+        }
+
         function deleteContent(id) {
             fetch(`/delete/`+ id, { method: 'POST' })
                 .then(response => {
