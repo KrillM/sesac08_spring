@@ -1,8 +1,8 @@
-package com.sesac.sesacspring.service;
+package com.sesac.sesacspring.study1.service;
 
-import com.sesac.sesacspring.domain.User;
-import com.sesac.sesacspring.dto.UserDto;
-import com.sesac.sesacspring.mapper.UserMapper;
+import com.sesac.sesacspring.study1.domain.User;
+import com.sesac.sesacspring.study1.dto.UserDto;
+import com.sesac.sesacspring.study1.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,8 +1,8 @@
-package com.sesac.sesacspring.service;
+package com.sesac.sesacspring.study1.service;
 
-import com.sesac.sesacspring.domain.Content;
-import com.sesac.sesacspring.dto.ContentDto;
-import com.sesac.sesacspring.mapper.ContentMapper;
+import com.sesac.sesacspring.study1.domain.Content;
+import com.sesac.sesacspring.study1.dto.ContentDto;
+import com.sesac.sesacspring.study1.mapper.ContentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
-package com.sesac.sesacspring.controller;
+package com.sesac.sesacspring.study1.controller;
 
-import com.sesac.sesacspring.dto.ContentDto;
-import com.sesac.sesacspring.service.ContentService;
+import com.sesac.sesacspring.study1.dto.ContentDto;
+import com.sesac.sesacspring.study1.service.ContentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

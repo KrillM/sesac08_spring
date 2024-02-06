@@ -1,4 +1,4 @@
-package com.sesac.sesacspring.dto;
+package com.sesac.sesacspring.study1.domain;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 
 @Getter
 @Setter
-public class ContentDto {
+public class Content {
     private int id;
     private String title;
     private String content;

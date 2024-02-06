@@ -1,4 +1,4 @@
-package com.sesac.sesacspring.domain;
+package com.sesac.sesacspring.study1.domain;
 
 import lombok.Getter;
 import lombok.Setter;

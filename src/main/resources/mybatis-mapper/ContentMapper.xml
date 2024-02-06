@@ -3,8 +3,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- xml file construction manual -->
-<mapper namespace="com.sesac.sesacspring.mapper.ContentMapper">
-    <select id="writeAll" resultType="com.sesac.sesacspring.domain.Content">
+<mapper namespace="com.sesac.sesacspring.study1.mapper.ContentMapper">
+    <select id="writeAll" resultType="com.sesac.sesacspring.study1.domain.Content">
         SELECT content.* FROM content
     </select>
 </mapper>

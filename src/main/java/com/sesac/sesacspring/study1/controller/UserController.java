@@ -1,10 +1,8 @@
-package com.sesac.sesacspring.controller;
+package com.sesac.sesacspring.study1.controller;
 
-import com.sesac.sesacspring.dto.ContentDto;
-import com.sesac.sesacspring.dto.UserDto;
-import com.sesac.sesacspring.service.UserService;
+import com.sesac.sesacspring.study1.dto.UserDto;
+import com.sesac.sesacspring.study1.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

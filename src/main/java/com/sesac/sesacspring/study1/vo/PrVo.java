@@ -1,4 +1,4 @@
-package com.sesac.sesacspring.vo;
+package com.sesac.sesacspring.study1.vo;
 
 public class PrVo {
     private String name;

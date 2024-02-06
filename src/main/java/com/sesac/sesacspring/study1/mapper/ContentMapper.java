@@ -1,6 +1,6 @@
-package com.sesac.sesacspring.mapper;
+package com.sesac.sesacspring.study1.mapper;
 
-import com.sesac.sesacspring.domain.Content;
+import com.sesac.sesacspring.study1.domain.Content;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;

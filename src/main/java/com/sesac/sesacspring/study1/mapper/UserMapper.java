@@ -1,6 +1,6 @@
-package com.sesac.sesacspring.mapper;
+package com.sesac.sesacspring.study1.mapper;
 
-import com.sesac.sesacspring.domain.User;
+import com.sesac.sesacspring.study1.domain.User;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
