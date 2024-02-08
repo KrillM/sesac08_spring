@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentService {
@@ -30,5 +31,50 @@ public class StudentService {
              students.add(studentDto);
          }
          return students;
+    }
+
+    public String insertStudent(String name, String nickname, Student.LoginType loginType) {
+        // 받아온 데이터로 repository의 save 메소드 호출
+        Student student = Student.builder().name(name).nickname(nickname).loginType(loginType).build();
+        Student newStudent = studentRepository.save(student);
+        // newStudent: save한 후 반환되는 Entity 객체
+
+        return newStudent.getId() + newStudent.getName();
+    }
+
+    public String searchStudentByName(String name) {
+        List<Student> student = studentRepository.findByName(name);
+        return "해당하는 이름의 사용자는 " + student.size() + "명 입니다.";
+    }
+
+    public String searchStudentById(int id) {
+//        Student student = studentRepository.findById(id);
+//        Optional<Student> student = studentRepository.findById(id);
+//        if(student.isPresent()){
+//            // isPresent: 객체의 여부를 boolean으로 반환
+//            return student.get().getName();
+//            // get: Optional에 담긴 객체를 반환
+//        }
+//        return "null";
+//
+        // Optional<T>: java 8부터 등장
+        // null일수도 있는 객체를 감싸는 wrapper 클래스
+
+        Student student = studentRepository
+                .findById(id)
+                .orElseThrow(() -> new RuntimeException("No User"));
+//        orElse(): 없으면 다른 값 반환, orElseThrow(): 없으면 error 처리
+        return student.getName();
+    }
+
+    public String searchStudentByNickname(String nickname) {
+        int count = studentRepository.countByNickname(nickname);
+        return "해당하는 이름의 사용자는 " + count + "명 입니다.";
+    }
+
+    public String updateStudent(int id, String name) {
+        studentRepository.updateStudentNameById(id, name);
+        Student updatedStudent = studentRepository.findById(id).orElseThrow(() -> new RuntimeException("Student not found!"));
+        return updatedStudent.getId() + updatedStudent.getName();
     }
 }
